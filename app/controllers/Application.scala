@@ -13,7 +13,12 @@ class Application @Inject() (val reactiveMongoApi: ReactiveMongoApi)
   extends Controller with MongoController with ReactiveMongoComponents {
 
   def getHotels = Action.async {
-    db.collection("hotels").find(Json.obj()).cursor[Hotel]().collect[List]()
-      .map {hotels => Ok(Json.toJson(Map("hotels" -> hotels)))}
+    db.collection("hotels").find(Json.obj()).cursor[Hotel]()
+      .collect[List]().map {hotels => Ok(Json.toJson(hotels))}
+  }
+
+  def findByCityName(cityName : String) = Action.async {
+    db.collection("hotels").find(Json.obj("city" -> cityName)).cursor[Hotel]()
+        .collect[List]().map (hotels => Ok(Json.toJson(hotels)))
   }
 }
