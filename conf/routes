@@ -2,4 +2,5 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET /getHotels    controllers.Application.getHotels()
+GET /getHotels    				controllers.Application.getHotels()
+GET /getHotels/:cityName 		controllers.Application.findByCityName(cityName)
