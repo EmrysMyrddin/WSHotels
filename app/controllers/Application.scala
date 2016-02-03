@@ -21,4 +21,4 @@ class Application @Inject() (val reactiveMongoApi: ReactiveMongoApi)
     db.collection("hotels").find(Json.obj("city" -> cityName)).cursor[Hotel]()
         .collect[List]().map (hotels => Ok(Json.toJson(hotels)))
   }
-}
+}chro
